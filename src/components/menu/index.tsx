@@ -3,6 +3,7 @@ import { useRequest } from "ahooks";
 import { Menu } from "antd";
 import { MenuItem } from "@/api/interface";
 import { useMemo } from "react";
+import { Outlet } from "react-router-dom";
 
 const { SubMenu } = Menu;
 
@@ -53,9 +54,12 @@ const CtmMenu = () => {
     }
   }, [menus]);
   return (
-    <Menu mode="inline" style={{ width: 256 }}>
-      {renderMenu}
-    </Menu>
+    <div>
+      <Menu mode="inline" style={{ width: 256 }}>
+        {renderMenu}
+      </Menu>
+      <Outlet />
+    </div>
   );
 };
 

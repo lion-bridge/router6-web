@@ -12079,7 +12079,7 @@ react-dev-utils@^11.0.4:
 
 react-dev-utils@^12.0.0:
   version "12.0.0"
-  resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-12.0.0.tgz#4eab12cdb95692a077616770b5988f0adf806526"
+  resolved "https://registry.npmmirror.com/react-dev-utils/download/react-dev-utils-12.0.0.tgz#4eab12cdb95692a077616770b5988f0adf806526"
   integrity sha512-xBQkitdxozPxt1YZ9O1097EJiVpwHr9FoAuEVURCKV0Av8NBERovJauzP7bo1ThvuhZ4shsQ1AJiu4vQpoT1AQ==
   dependencies:
     "@babel/code-frame" "^7.16.0"
