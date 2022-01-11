@@ -7,7 +7,7 @@ const routeList: RouteObject[] = [
     element: import('@/components/Layout'),
     children: [
       {
-        
+        element: import('@/components/menu'),
       }
     ]
   },
