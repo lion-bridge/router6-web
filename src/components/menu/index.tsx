@@ -2,13 +2,22 @@ import { requestRoute } from "@/api/route.api";
 import { useRequest } from "ahooks";
 import { Menu } from "antd";
 import { MenuItem } from "@/api/interface";
-import { useMemo } from "react";
-import { Outlet } from "react-router-dom";
+import { useEffect, useMemo, useState, memo } from "react";
+import { Outlet, useNavigate, useMatch, useLocation } from "react-router-dom";
+import CustomeLink from "./CustomeLink";
 
 const { SubMenu } = Menu;
 
+const useMenuInfo = (location: Location, list: MenuItem[]) => {
+  const { pathname } = location;
+};
+
 const CtmMenu = () => {
   const menus = useRequest(requestRoute);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [openKeys, setOpenKeys] = useState<string[]>();
+  const [selectedKeys, setSelectedKeys] = useState<string[]>();
 
   const getMenuList = (list: MenuItem[]) => {
     const levels: MenuItem[][] = [spliceByPId(list, 0)];
@@ -27,7 +36,9 @@ const CtmMenu = () => {
     const targetList: MenuItem[] = [];
     while (i < list.length) {
       if (list[i].pId === pId) {
-        targetList.push(list[i]);
+        targetList.push({
+          ...list[i],
+        });
         list.splice(i, 1);
       } else {
         i++;
@@ -38,29 +49,63 @@ const CtmMenu = () => {
   const renderSubMenu = (list: MenuItem[]) => {
     return list?.map((v) =>
       v?.children?.length ? (
-        <SubMenu key={v.id} title={v?.resNm}>
+        <SubMenu key={String(v.id)} title={v?.resNm}>
           {renderSubMenu(v.children)}
         </SubMenu>
       ) : (
-        <Menu.Item key={v?.id}>{v.resNm}</Menu.Item>
+        <Menu.Item
+          key={String(v?.id)}
+          onClick={() => {
+            console.log("Menu.Item", v);
+            if (v?.path) {
+              navigate(v.path);
+            }
+          }}
+        >
+          {v.resNm}
+        </Menu.Item>
       )
     );
   };
   const renderMenu = useMemo(() => {
+    console.log('menus?.data?.length',menus?.data?.length)
     if (menus?.data?.length) {
-      return renderSubMenu(getMenuList(menus?.data));
+      return (
+        <Menu
+          mode="inline"
+          style={{ width: 256 }}
+          openKeys={openKeys}
+          selectedKeys={selectedKeys}
+          onOpenChange={(openKeys: string[]) => {
+            setOpenKeys(openKeys);
+          }}
+          onSelect={({ selectedKeys }) => {
+            setSelectedKeys(selectedKeys);
+          }}
+        >
+          {renderSubMenu(getMenuList(JSON.parse(JSON.stringify(menus?.data))))}
+        </Menu>
+      );
     } else {
       return null;
     }
   }, [menus]);
+  useEffect(() => {
+    if (location?.pathname && menus?.data) {
+      const target = menus?.data?.find((v) => v?.path === location.pathname);
+      if (target) {
+        console.log("target", target);
+        setOpenKeys([String(target.pId)]);
+        setSelectedKeys([String(target.id)]);
+      }
+    }
+  }, [menus?.data, location]);
   return (
     <div>
-      <Menu mode="inline" style={{ width: 256 }}>
-        {renderMenu}
-      </Menu>
+      {renderMenu}
       <Outlet />
     </div>
   );
 };
 
-export default CtmMenu;
+export default memo(CtmMenu);

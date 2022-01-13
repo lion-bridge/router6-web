@@ -4,5 +4,6 @@ export interface MenuItem {
   resCode?: string;
   resNm?: string;
   resTypCd?: string;
-  children?: MenuItem[]
+  path?: string;
+  children?: MenuItem[];
 }

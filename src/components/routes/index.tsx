@@ -3,7 +3,7 @@ import routeList from "@/config/route.config";
 
 const Routers = () => {
   const routes = useRoutes(routeList);
-  return <BrowserRouter>{routes}</BrowserRouter>;
+  return routes;
 };
 
 export default Routers;

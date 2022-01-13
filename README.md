@@ -11,9 +11,18 @@
 ## 1.2 问题解决
 - [ ] 1.CRA使用`webpack@5`，而`storybook`使用`webpack@4.46.0`,造成编译报错，[解决方案：将storybook升级为webpack@5](https://storybook.js.org/blog/storybook-for-webpack-5/)
 - [ ] 2.
-cccccccc
+
+
 # 二. React Router示例
 ## 2.1 路由权限管理
 * 1.登录页不登录也可以访问
 * 2.'我的'页面必须登录才可访问
 * 3.登录后跳转到登陆前的那个url上
+  
+# 三.基础知识
+## 3.1 react组件懒加载
+ - [import()函数的作用](https://blog.csdn.net/ixygj197875/article/details/79263912)
+ - [webpack动态导入-import()](https://webpack.docschina.org/guides/code-splitting/#dynamic-imports)
+ - [使用React.lazy()函数实现懒加载](https://react.docschina.org/docs/code-splitting.html#reactlazy)
+ - [理解高阶组件](https://react.docschina.org/docs/higher-order-components.html)
+ - [React高阶组件（HOC)解析](https://www.jianshu.com/p/4143a6296994)

@@ -21,6 +21,7 @@
       "mdfUsrId": 0,
       "pId": 21,
       "resCode": "dingdanliebiao",
+      "path": "/order/orderList",
       "resNm": "全部订单",
       "resTypCd": "2"
     },
@@ -668,6 +669,7 @@
       "mdfTm": "2021-12-16 15:41:23",
       "mdfUsrId": 0,
       "pId": 21,
+      "path": "/order/create",
       "resCode": "chuangjiandingdan",
       "resNm": "创建订单",
       "resTypCd": "2"
