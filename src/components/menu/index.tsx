@@ -56,7 +56,7 @@ const CtmMenu = () => {
         <Menu.Item
           key={String(v?.id)}
           onClick={() => {
-            console.log("Menu.Item", v);
+            // console.log("Menu.Item", v);
             if (v?.path) {
               navigate(v.path);
             }
@@ -68,7 +68,7 @@ const CtmMenu = () => {
     );
   };
   const renderMenu = useMemo(() => {
-    console.log('menus?.data?.length',menus?.data?.length)
+    // console.log("menus?.data?.length", menus?.data?.length);
     if (menus?.data?.length) {
       return (
         <Menu
@@ -94,16 +94,15 @@ const CtmMenu = () => {
     if (location?.pathname && menus?.data) {
       const target = menus?.data?.find((v) => v?.path === location.pathname);
       if (target) {
-        console.log("target", target);
+        // console.log("target", target);
         setOpenKeys([String(target.pId)]);
         setSelectedKeys([String(target.id)]);
       }
     }
   }, [menus?.data, location]);
   return (
-    <div>
+    <div style={{ display: "flex" }}>
       {renderMenu}
-      <Outlet />
     </div>
   );
 };

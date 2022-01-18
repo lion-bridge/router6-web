@@ -24,6 +24,6 @@ const UserRequest = {
 export const getUser = () => {
   const user = window.sessionStorage.getItem(USER_SESSION);
   return JSON.parse(user || "{}") as UserInfoType;
-}
+};
 
 export default UserRequest;

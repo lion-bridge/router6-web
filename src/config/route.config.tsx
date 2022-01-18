@@ -5,7 +5,7 @@ import Layout from "@/components/Layout";
 import AllOrders from "@/pages/Order/AllOrders";
 import CreateOrder from "@/pages/Order/CreateOrder";
 import Login from "@/Auth/login";
-import LazyComponent from '@/components/LazyComponent'
+import LazyComponent from "@/components/LazyComponent";
 
 export interface RouteObjectType {
   id?: number;
@@ -23,30 +23,40 @@ const routeList: RouteObjectType[] = [
     element: <Layout />,
     children: [
       {
-        element: <Menu />,
+        name: "欢迎",
+        index: true,
+      },
+      {
+        name: "订单管理",
+        path: "order",
+        id: 22,
         children: [
           {
-            name: '欢迎',
-            index: true,
+            path: "orderList",
+            name: "全部订单",
+            id: 22,
+            // element: lazyFunction(() => import('@/pages/Order/AllOrders'))
+            element: (
+              <LazyComponent component={import("@/pages/Order/AllOrders")} />
+            ),
           },
           {
-            name: "订单管理",
-            path: "order",
+            path: "create",
+            name: "创建订单",
             id: 22,
             children: [
               {
-                path: "orderList",
-                name: "全部订单",
-                id: 22,
-                // element: lazyFunction(() => import('@/pages/Order/AllOrders'))
-                element: <LazyComponent component={import('@/pages/Order/AllOrders')}/>,
+                index: true,
+                element: (
+                  <LazyComponent component={import("@/pages/Order/CreateOrder")} />
+                ),
               },
               {
-                index: true,
-                path: "create",
-                name: "创建订单",
+                path: ":id",
                 id: 22,
-                element: <LazyComponent component={import('@/pages/Order/CreateOrder')}/>,
+                element: (
+                  <LazyComponent component={import("@/pages/Order/CreateOrder")} />
+                ),
               },
             ],
           },

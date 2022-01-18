@@ -1,9 +1,18 @@
 import { Outlet } from "react-router-dom";
+import CtmMenu from "@/components/menu";
+import RouteTabs from "@/components/RouteTabs";
 
 const Layout = () => {
-  return <div>Layout
-    <Outlet />
-  </div>;
+  return (
+    <div style={{ display: "flex" }}>
+      <CtmMenu />
+      <div>
+        <RouteTabs>
+          <Outlet />
+        </RouteTabs>
+      </div>
+    </div>
+  );
 };
 
 export default Layout;

@@ -10,5 +10,4 @@ const LazyComponent = ({ component }: { component: Promise<any> }) => {
   );
 };
 
-
 export default LazyComponent;
