@@ -35,7 +35,6 @@ const routeList: RouteObjectType[] = [
             path: "orderList",
             name: "全部订单",
             id: 22,
-            // element: lazyFunction(() => import('@/pages/Order/AllOrders'))
             element: (
               <LazyComponent component={import("@/pages/Order/AllOrders")} />
             ),
@@ -60,6 +59,14 @@ const routeList: RouteObjectType[] = [
               },
             ],
           },
+          {
+            path: 'modify',
+            name: '改单管理',
+            id: 23,
+            element: (
+              <LazyComponent component={import("@/pages/Order/ModifyOrder")} />
+            ),
+          }
         ],
       },
     ],

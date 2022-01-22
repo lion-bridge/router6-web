@@ -5,20 +5,19 @@ import { MenuItem } from "@/api/interface";
 import { useEffect, useMemo, useState, memo } from "react";
 import { Outlet, useNavigate, useMatch, useLocation } from "react-router-dom";
 import CustomeLink from "./CustomeLink";
+import { useRouterTabContext } from "@/components/Provider/contex";
 
 const { SubMenu } = Menu;
-
-const useMenuInfo = (location: Location, list: MenuItem[]) => {
-  const { pathname } = location;
-};
 
 const CtmMenu = () => {
   const menus = useRequest(requestRoute);
   const navigate = useNavigate();
   const location = useLocation();
+  const routerTab = useRouterTabContext();
   const [openKeys, setOpenKeys] = useState<string[]>();
   const [selectedKeys, setSelectedKeys] = useState<string[]>();
 
+  // 递归遍历，转换为树形
   const getMenuList = (list: MenuItem[]) => {
     const levels: MenuItem[][] = [spliceByPId(list, 0)];
     while (list?.length) {
@@ -31,6 +30,7 @@ const CtmMenu = () => {
     }
     return levels[0];
   };
+  // 根据父id查所有子菜单
   const spliceByPId = (list: MenuItem[], pId: number) => {
     let i = 0;
     const targetList: MenuItem[] = [];
@@ -56,9 +56,13 @@ const CtmMenu = () => {
         <Menu.Item
           key={String(v?.id)}
           onClick={() => {
-            // console.log("Menu.Item", v);
+            console.log("Menu.Item", v);
             if (v?.path) {
-              navigate(v.path);
+              // navigate(v.path);
+              routerTab?.createTab({
+                title: v?.resNm,
+                path: v.path,
+              });
             }
           }}
         >
@@ -100,11 +104,7 @@ const CtmMenu = () => {
       }
     }
   }, [menus?.data, location]);
-  return (
-    <div style={{ display: "flex" }}>
-      {renderMenu}
-    </div>
-  );
+  return <div>{renderMenu}</div>;
 };
 
 export default memo(CtmMenu);

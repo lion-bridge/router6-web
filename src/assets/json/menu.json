@@ -35,6 +35,7 @@
       "pId": 21,
       "resCode": "gaidanguanli",
       "resNm": "改单管理",
+      "path": "/order/modify",
       "resTypCd": "2"
     },
     {

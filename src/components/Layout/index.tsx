@@ -3,12 +3,13 @@ import CtmMenu from "@/components/menu";
 import RouteTabs from "@/components/RouteTabs";
 
 const Layout = () => {
+  console.log("Layout");
   return (
     <div style={{ display: "flex" }}>
       <CtmMenu />
       <div>
         <RouteTabs>
-          <Outlet />
+          {/* <Outlet /> */}
         </RouteTabs>
       </div>
     </div>

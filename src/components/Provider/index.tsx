@@ -6,7 +6,7 @@ import {
   Provider,
   useState,
 } from "react";
-import { useRouterTabs } from "../RouteTabs";
+import { useRouterTabs } from "../RouteTabs/useRouterTabs";
 import { AppContext } from "./contex";
 
 interface Props {
