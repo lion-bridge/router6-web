@@ -1,4 +1,4 @@
-import { RouteObject } from "react-router-dom";
+import { Navigate, RouteObject } from "react-router-dom";
 import { lazy } from "react";
 import Menu from "@/components/menu";
 import Layout from "@/components/Layout";
@@ -23,8 +23,12 @@ const routeList: RouteObjectType[] = [
     element: <Layout />,
     children: [
       {
-        name: "欢迎",
+        name: "全部订单",
         index: true,
+        id: 22,
+        element: (
+          <Navigate to='/order/orderList' replace={true}/>
+        ),
       },
       {
         name: "订单管理",

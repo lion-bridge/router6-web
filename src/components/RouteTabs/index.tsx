@@ -37,10 +37,14 @@ const RouteTabs = ({ children }: Props) => {
     const match = matchRoutes(routeList, location);
     console.log("match", match);
     const targetRoute = match?.find((v) => v?.pathname === location?.pathname);
+    
     const targeTab = routerTab?.tabs?.find(
       (v) => v?.path === location?.pathname
     );
     console.log("targetRoute", targetRoute);
+    if (location?.pathname === '/') {
+      return;
+    }
     if (!routerTab?.tabs?.length && targetRoute) {
       // 首次没有tab
       routerTab?.setTabs([
@@ -50,6 +54,7 @@ const RouteTabs = ({ children }: Props) => {
           element: targetRoute?.route?.element,
         },
       ]);
+      routerTab?.setActiveKey(targetRoute.pathname);
     }
     if (routerTab?.tabs?.length) {
       routerTab?.setTabs((tabs) =>
